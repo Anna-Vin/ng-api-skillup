@@ -1,7 +1,12 @@
-.container {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+.home {
+  padding: 20px 0;
+  text-align: center;
+  .k-grid {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  .addButton {
+    margin-bottom: 30px;
+  }
 }

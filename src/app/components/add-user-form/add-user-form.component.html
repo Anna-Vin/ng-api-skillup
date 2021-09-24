@@ -1,0 +1,15 @@
+<kendo-dialog
+  title="Please Enter User Data"
+  [minWidth]="250"
+  [width]="450"
+  *ngIf="isModalOpen"
+  (close)="close('cancel')"
+>
+  <p style="margin: 30px; text-align: center">FORM PLACEHOLDER</p>
+  <kendo-dialog-actions>
+    <button kendoButton (click)="close('no')">Cancel</button>
+    <button kendoButton (click)="close('yes')" [primary]="true">
+      Add User
+    </button>
+  </kendo-dialog-actions>
+</kendo-dialog>

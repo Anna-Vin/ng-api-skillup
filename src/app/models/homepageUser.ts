@@ -1,4 +1,4 @@
-export interface homePageUser {
+export interface HomePageUser {
   id: number;
   name: string;
   email: string;
