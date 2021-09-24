@@ -1,9 +1,27 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from './../../environments/environment';
+import { Observable } from 'rxjs';
+import { User } from '../models/User';
+import { HomePageUser } from '../models/homepageUser';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
+  constructor(private http: HttpClient) {}
 
-  constructor() { }
+  public getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${environment.BASE_URL}/users`);
+  }
+
+  public mapUserForTable(user: User): HomePageUser {
+    return {
+      id: user.id,
+      name: `${user.firstName} ${user.lastName}`,
+      email: user.email,
+      address: `${user.address.city}, ${user.address.street}, ${user.address.building}`,
+      phone: user.phone,
+    };
+  }
 }
