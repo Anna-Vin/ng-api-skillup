@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/User';
 import { HomePageUser } from '../models/homepageUser';
 
@@ -9,10 +9,17 @@ import { HomePageUser } from '../models/homepageUser';
   providedIn: 'root',
 })
 export class UserService {
+
+  public userIdSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+
   constructor(private http: HttpClient) {}
 
   public getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${environment.BASE_URL}/users`);
+  }
+
+  userId$(): Observable<number> {
+    return this.userIdSubject.asObservable();
   }
 
   

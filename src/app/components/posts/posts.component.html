@@ -1,0 +1,18 @@
+<kendo-listview
+  class="posts"
+  [height]="1000"
+  [data]="posts"
+  containerClass="k-d-flex k-flex-col k-flex-nowrap"
+  (scrollBottom)="loadMore()"
+>
+  <ng-template kendoListViewHeaderTemplate>
+    <div class="header">POSTS BY THIS USER</div>
+  </ng-template>
+  <ng-template
+    kendoListViewItemTemplate
+    let-dataItem="dataItem"
+    let-isLast="isLast"
+  >
+    <app-post class="article" [post]="dataItem"> </app-post>
+  </ng-template>
+</kendo-listview>

@@ -1,0 +1,21 @@
+<kendo-card class="card" width="auto" >
+  <div class="k-vbox k-column">
+    <div class="text-content">
+      <kendo-card-header class="k-hstack post-title">
+        {{ post.title }}
+      </kendo-card-header>
+      <kendo-card-body>
+        {{ post.body }}
+      </kendo-card-body>
+      <hr kendoCardSeparator />
+      <div class="comments">
+          <app-comments [comments]="comments"></app-comments>
+      </div>
+      <hr kendoCardSeparator />
+    </div>
+    <kendo-card-actions class="actions">
+      <button kendoButton class="k-button k-bare" [primary]="true" icon="edit">Edit Post</button>
+      <button  kendoButton class="k-button k-bare" [primary]="true" icon="trash">Delete Post</button>
+    </kendo-card-actions>
+  </div>
+</kendo-card>

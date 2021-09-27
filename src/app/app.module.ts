@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { UserComponent } from './pages/user/user.component';
-import { PostComponent } from './pages/post/post.component';
+import { PostComponent } from './components/postItem/post.component';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GridModule } from '@progress/kendo-angular-grid';
@@ -16,12 +16,16 @@ import { ListViewModule } from '@progress/kendo-angular-listview';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { LabelModule } from '@progress/kendo-angular-label';
+import { PostsComponent } from './components/posts/posts.component';
+import { LayoutModule } from '@progress/kendo-angular-layout';
+import { CommentsComponent } from './components/comments/comments.component';
+
 
 
 
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, UserComponent, PostComponent, AddUserFormComponent, UserInfoComponent],
+  declarations: [AppComponent, HomeComponent, UserComponent, PostComponent, AddUserFormComponent, UserInfoComponent, PostsComponent, CommentsComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -32,7 +36,8 @@ import { LabelModule } from '@progress/kendo-angular-label';
     DialogsModule,
     ListViewModule,
     ReactiveFormsModule,
-    LabelModule
+    LabelModule,
+    LayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent],

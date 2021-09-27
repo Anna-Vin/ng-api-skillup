@@ -40,6 +40,7 @@ export class UserInfoComponent implements OnInit {
     });
     this.routeSub = this.activatedRoute.params.subscribe((params: Params) => {
       this.userId = params['id'];
+      this.userService.userIdSubject.next(this.userId);
       this.getUserInfo(this.userId);
     });
   }

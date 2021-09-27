@@ -1,0 +1,12 @@
+<kendo-panelbar>
+  <kendo-panelbar-item title="Show Comments" [expanded]="false">
+    <ng-template kendoPanelBarContent>
+      <div class="comments-list">
+        <div class="comment-item" *ngFor="let comment of comments">
+          <p class="comment-user">{{comment.name}} | {{comment.email}} :</p>
+          <p class="comment-body">{{comment.body}}</p>
+        </div>
+      </div>
+    </ng-template>
+  </kendo-panelbar-item>
+  </kendo-panelbar>
