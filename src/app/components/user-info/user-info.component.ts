@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
-import { CancelEvent, EditEvent, ListViewDataResult, SaveEvent } from '@progress/kendo-angular-listview';
+import {
+  CancelEvent,
+  EditEvent,
+  ListViewDataResult,
+  SaveEvent,
+} from '@progress/kendo-angular-listview';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user.service';
@@ -18,6 +23,7 @@ export class UserInfoComponent implements OnInit {
   private routeSub!: Subscription;
   private userSub!: Subscription;
   private updateSub!: Subscription;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: UserService
@@ -55,7 +61,25 @@ export class UserInfoComponent implements OnInit {
   editHandler({ sender, dataItem, itemIndex }: EditEvent): void {
     this.formGroup = new FormGroup({
       id: new FormControl(dataItem.id),
-      firstName: new FormControl(dataItem.firstName),
+      firstName: new FormControl(dataItem.firstName, Validators.required),
+      lastName: new FormControl(dataItem.lastName, Validators.required),
+      username: new FormControl(dataItem.username, Validators.required),
+      email: new FormControl(dataItem.email, Validators.required),
+      address: new FormGroup({
+        street: new FormControl(dataItem.address.street, Validators.required),
+        building: new FormControl(
+          dataItem.address.building,
+          Validators.required
+        ),
+        city: new FormControl(dataItem.address.city, Validators.required),
+        zipcode: new FormControl(dataItem.address.zipcode, Validators.required),
+      }),
+      phone: new FormControl(dataItem.phone, Validators.required),
+      website: new FormControl(dataItem.website, Validators.required),
+      company: new FormGroup({
+        name: new FormControl(dataItem.company.name, Validators.required),
+        scope: new FormControl(dataItem.company.scope, Validators.required),
+      }),
     });
 
     sender.editItem(itemIndex, this.formGroup);
@@ -71,6 +95,5 @@ export class UserInfoComponent implements OnInit {
       this.getUserInfo(user.id);
       sender.closeItem(itemIndex);
     });
-    
   }
 }

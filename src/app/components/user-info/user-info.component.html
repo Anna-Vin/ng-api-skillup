@@ -1,4 +1,5 @@
 <kendo-listview
+  class="list-view"
   [data]="listData$ | async"
   (edit)="editHandler($event)"
   (cancel)="cancelHandler($event)"
@@ -9,10 +10,55 @@
     let-formGroup="formGroup"
     let-index="index"
   >
-    <form [formGroup]="formGroup">
-      <input type="text" formControlName="firstName" />
-      <button kendoListViewSaveCommand>Update</button>
-      <button kendoListViewCancelCommand>Cancel</button>
+    <form [formGroup]="formGroup" class="k-form">
+      <h1>Edit User Info</h1>
+      <kendo-label text="First Name"
+        ><input type="text" formControlName="firstName" class="k-textbox"
+      /></kendo-label>
+      <kendo-label text="Last Name">
+        <input type="text" formControlName="lastName" class="k-textbox"
+      /></kendo-label>
+      <kendo-label text="Username"
+        ><input type="text" formControlName="username" class="k-textbox"
+      /></kendo-label>
+      <kendo-label text="Email">
+        <input type="email" formControlName="email" class="k-textbox"
+      /></kendo-label>
+      <div formGroupName="address">
+        <h3>Address:</h3>
+        <kendo-label text="Street">
+          <input type="text" formControlName="street" class="k-textbox"
+        /></kendo-label>
+        <kendo-label text="Building"
+          ><input type="text" formControlName="building" class="k-textbox"
+        /></kendo-label>
+        <kendo-label text="City"
+          ><input type="text" formControlName="city" class="k-textbox"
+        /></kendo-label>
+        <kendo-label text="Zipcode"
+          ><input type="text" formControlName="zipcode" class="k-textbox"
+        /></kendo-label>
+      </div>
+      <hr />
+      <kendo-label text="Phone"
+        ><input type="tel" formControlName="phone" class="k-textbox"
+      /></kendo-label>
+      <kendo-label text="Website"
+        ><input type="url" formControlName="website" class="k-textbox"
+      /></kendo-label>
+      <div formGroupName="company">
+        <h3>Company:</h3>
+        <kendo-label text="Name"
+          ><input type="text" formControlName="name" class="k-textbox"
+        /></kendo-label>
+        <kendo-label text="Scope"
+          ><input type="text" formControlName="scope" class="k-textbox"
+        /></kendo-label>
+      </div>
+      <div class="button-group">
+        <button kendoListViewSaveCommand>Update</button>
+        <button kendoListViewCancelCommand>Cancel</button>
+      </div>
     </form>
   </ng-template>
 
@@ -21,15 +67,57 @@
     let-dataItem="dataItem"
     let-index="index"
   >
-    <div class="product-view k-widget">
-      <dl>
-        <dt>firstName</dt>
-        <dd>{{ dataItem.firstName }}</dd>
-      </dl>
-      <div class="edit-buttons">
-        <button kendoListViewEditCommand>Edit</button>
+    <h1>User Info</h1>
+    <div class="info">
+      <div class="product-view k-widget">
+        <dl>
+          <dt>First Name:</dt>
+          <dd>{{ dataItem.firstName }}</dd>
+        </dl>
+        <dl>
+          <dt>Last Name:</dt>
+          <dd>{{ dataItem.lastName }}</dd>
+        </dl>
+        <dl>
+          <dt>Username:</dt>
+          <dd>{{ dataItem.username }}</dd>
+        </dl>
+        <dl>
+          <dt>Email:</dt>
+          <dd>{{ dataItem.email }}</dd>
+        </dl>
+        <dl>
+          <dt>Address:</dt>
+          <dd><span>Street: </span>{{ dataItem.address.street }}</dd>
+          <dd><span>Building: </span>{{ dataItem.address.building }}</dd>
+          <dd><span>City: </span>{{ dataItem.address.city }}</dd>
+          <dd><span>Zipcode: </span>{{ dataItem.address.zipcode }}</dd>
+        </dl>
+        <dl>
+          <dt>Phone:</dt>
+          <dd>{{ dataItem.phone }}</dd>
+        </dl>
+        <dl>
+          <dt>Website:</dt>
+          <dd>
+            <a href="'{{ dataItem.website }}'">{{ dataItem.website }}</a>
+          </dd>
+        </dl>
+        <dl>
+          <dt>Company:</dt>
+          <dd><span>Name: </span>{{ dataItem.company.name }}</dd>
+          <dd><span>Scope: </span>{{ dataItem.company.scope }}</dd>
+        </dl>
       </div>
+      <div class="avatar">
+        <img
+          src="https://www.freeiconspng.com/uploads/person-icon-red-19.png"
+          alt="user"
+        />
+      </div>
+    </div>
+    <div class="edit-buttons">
+      <button kendoListViewEditCommand>Edit</button>
     </div>
   </ng-template>
 </kendo-listview>
-

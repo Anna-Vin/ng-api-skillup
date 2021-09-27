@@ -15,6 +15,8 @@ import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { ListViewModule } from '@progress/kendo-angular-listview';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserInfoComponent } from './components/user-info/user-info.component';
+import { LabelModule } from '@progress/kendo-angular-label';
+
 
 
 
@@ -29,7 +31,8 @@ import { UserInfoComponent } from './components/user-info/user-info.component';
     GridModule,
     DialogsModule,
     ListViewModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LabelModule
   ],
   providers: [],
   bootstrap: [AppComponent],

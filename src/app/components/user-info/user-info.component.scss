@@ -1,0 +1,52 @@
+.list-view {
+  padding: 10px 30px;
+
+  a {
+    color: rgb(219, 81, 81);
+  }
+
+  h1 {
+    margin-top: 0;
+    text-align: center;
+  }
+
+  .info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+
+    dt {
+      font-weight: bold;
+    }
+
+    img {
+      max-width: 400px;
+    }
+  }
+
+  .edit-buttons {
+    text-align: center;
+  }
+
+  .k-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    kendo-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    input {
+      width: 200px;
+    }
+  }
+}
+
+.button-group {
+  margin: 20px 0px;
+}
