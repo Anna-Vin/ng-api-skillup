@@ -1,0 +1,35 @@
+<kendo-listview
+  [data]="listData$ | async"
+  (edit)="editHandler($event)"
+  (cancel)="cancelHandler($event)"
+  (save)="saveHandler($event)"
+>
+  <ng-template
+    kendoListViewEditTemplate
+    let-formGroup="formGroup"
+    let-index="index"
+  >
+    <form [formGroup]="formGroup">
+      <input type="text" formControlName="firstName" />
+      <button kendoListViewSaveCommand>Update</button>
+      <button kendoListViewCancelCommand>Cancel</button>
+    </form>
+  </ng-template>
+
+  <ng-template
+    kendoListViewItemTemplate
+    let-dataItem="dataItem"
+    let-index="index"
+  >
+    <div class="product-view k-widget">
+      <dl>
+        <dt>firstName</dt>
+        <dd>{{ dataItem.firstName }}</dd>
+      </dl>
+      <div class="edit-buttons">
+        <button kendoListViewEditCommand>Edit</button>
+      </div>
+    </div>
+  </ng-template>
+</kendo-listview>
+

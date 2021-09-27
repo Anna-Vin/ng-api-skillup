@@ -12,10 +12,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { AddUserFormComponent } from './components/add-user-form/add-user-form.component';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
+import { ListViewModule } from '@progress/kendo-angular-listview';
+import { ReactiveFormsModule } from '@angular/forms';
+import { UserInfoComponent } from './components/user-info/user-info.component';
+
 
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, UserComponent, PostComponent, AddUserFormComponent],
+  declarations: [AppComponent, HomeComponent, UserComponent, PostComponent, AddUserFormComponent, UserInfoComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -24,6 +28,8 @@ import { DialogsModule } from '@progress/kendo-angular-dialog';
     BrowserAnimationsModule,
     GridModule,
     DialogsModule,
+    ListViewModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -15,6 +15,7 @@ export class UserService {
     return this.http.get<User[]>(`${environment.BASE_URL}/users`);
   }
 
+  
   public mapUserForTable(user: User): HomePageUser {
     return {
       id: user.id,
@@ -24,4 +25,13 @@ export class UserService {
       phone: user.phone,
     };
   }
+  
+  public getSingleUserInfo(id: number): Observable<User> {
+    return this.http.get<User>(`${environment.BASE_URL}/users/${id}`);
+  }
+  
+  public updateUser(user: User): Observable<User> {
+    return this.http.put<User>(`${environment.BASE_URL}/users/${user.id}`, user)
+  }
+
 }

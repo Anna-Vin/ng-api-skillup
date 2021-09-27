@@ -30,17 +30,19 @@
     "@progress/kendo-angular-intl": "^3.0.0",
     "@progress/kendo-angular-l10n": "^3.0.0",
     "@progress/kendo-angular-label": "^3.0.0",
+    "@progress/kendo-angular-listview": "^2.0.1",
     "@progress/kendo-angular-pdf-export": "^3.0.0",
     "@progress/kendo-angular-popup": "^4.0.0",
     "@progress/kendo-angular-treeview": "^5.0.0",
     "@progress/kendo-data-query": "^1.0.0",
-    "@progress/kendo-drawing": "^1.0.0",
+    "@progress/kendo-drawing": "^1.5.12",
     "@progress/kendo-licensing": "^1.0.2",
     "@progress/kendo-theme-default": "latest",
     "json-server": "^0.16.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "@progress/kendo-angular-pager": "^2.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.1.2",

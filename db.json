@@ -4109,22 +4109,7 @@
   "users": [
     {
       "id": 1,
-      "firstName": "Leanne",
-      "lastName": "Graham",
-      "username": "Bret",
-      "email": "Sincere@april.biz",
-      "address": {
-        "street": "Kulas Light",
-        "building": "3",
-        "city": "Gwenborough",
-        "zipcode": "92998-3874"
-      },
-      "phone": "+380956724902",
-      "website": "hildegard.org",
-      "company": {
-        "name": "Romaguera-Crona",
-        "scope": "Finance"
-      }
+      "firstName": "Leanne"
     }
   ],
   "profile": {
