@@ -9,7 +9,7 @@
       </kendo-card-body>
       <hr kendoCardSeparator />
       <div class="comments">
-          <app-comments [comments]="comments"></app-comments>
+          <app-comments [comments]="comments" [areCommentsShown]="areCommentsShown" (onCommentsClick)="clickOnComment()"></app-comments>
       </div>
       <hr kendoCardSeparator />
     </div>

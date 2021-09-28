@@ -19,6 +19,8 @@ import { LabelModule } from '@progress/kendo-angular-label';
 import { PostsComponent } from './components/posts/posts.component';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { CommentsComponent } from './components/comments/comments.component';
+import { IndicatorsModule } from '@progress/kendo-angular-indicators';
+
 
 
 
@@ -37,7 +39,8 @@ import { CommentsComponent } from './components/comments/comments.component';
     ListViewModule,
     ReactiveFormsModule,
     LabelModule,
-    LayoutModule
+    LayoutModule,
+    IndicatorsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

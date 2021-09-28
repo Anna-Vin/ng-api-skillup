@@ -11,19 +11,30 @@ import { Subscription } from 'rxjs';
 })
 export class PostComponent implements OnInit, OnDestroy {
   public comments: Comment[] = [];
+  public areCommentsShown: boolean = false;
   private commSub!: Subscription;
   @Input() post: Post;
 
   constructor(private postService: PostService) {}
 
   ngOnInit(): void {
-    this.postService.getComments().subscribe((commResp) => {
-      this.comments = this.postService.filterCommentsByPost(commResp, this.post.id);
-    });
   }
 
   ngOnDestroy(): void {
     this.commSub.unsubscribe();
   }
 
+  public clickOnComment(): void {
+    if (this.areCommentsShown) {
+      return;
+    } else {
+      this.areCommentsShown = true;
+      this.postService.getComments().subscribe((commResp) => {
+        this.comments = this.postService.filterCommentsByPost(
+          commResp,
+          this.post.id
+        );
+      });
+    }
+  }
 }
