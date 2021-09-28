@@ -20,6 +20,7 @@ export class UserInfoComponent implements OnInit {
   public userId!: number;
   public formGroup!: FormGroup;
   public listDataSubject!: BehaviorSubject<ListViewDataResult>;
+  public isLoaded: boolean = false;
   private routeSub!: Subscription;
   private userSub!: Subscription;
   private updateSub!: Subscription;
@@ -56,6 +57,7 @@ export class UserInfoComponent implements OnInit {
       .getSingleUserInfo(id)
       .subscribe((userResp: User) => {
         this.listDataSubject.next({ data: [userResp], total: 1 });
+        this.isLoaded = true;
       });
   }
 

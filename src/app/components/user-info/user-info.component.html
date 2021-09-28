@@ -1,9 +1,20 @@
+<div class="loader-wrapper" *ngIf="!isLoaded">
+  <kendo-loader
+    class="loader"
+    type="infinite-spinner"
+    themeColor="primary"
+    size="large"
+  >
+  </kendo-loader>
+</div>
+
 <kendo-listview
   class="list-view"
   [data]="listData$ | async"
   (edit)="editHandler($event)"
   (cancel)="cancelHandler($event)"
   (save)="saveHandler($event)"
+  *ngIf="isLoaded"
 >
   <ng-template
     kendoListViewEditTemplate
@@ -61,7 +72,6 @@
       </div>
     </form>
   </ng-template>
-
   <ng-template
     kendoListViewItemTemplate
     let-dataItem="dataItem"
