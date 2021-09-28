@@ -24,4 +24,14 @@ export class PostService {
   }
 
 
+  public getPostInfo(postId: number): Observable<Post> {
+    return this.http.get<Post>(`${environment.BASE_URL}/api/posts/${postId}`)
+  }
+
+
+  public updatePost(post: Post): Observable<Post> {
+    return this.http.put<Post>(`${environment.BASE_URL}/api/posts/${post.id}`, post)
+  }
+
+
 }

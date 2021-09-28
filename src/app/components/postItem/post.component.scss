@@ -1,11 +1,33 @@
 .card {
-    margin: 30px 30px 10px 30px;
+  margin: 30px 30px 10px 30px;
 }
 
 .post-title {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .comments {
-    padding: 30px;
+  padding: 30px;
+}
+
+span {
+  transform: translateY(-2px);
+}
+
+.customizing-label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+form {
+    padding: 20px;
+}
+
+kendo-label {
+    margin: 20px;
+}
+
+textarea.k-textbox {
+    height: auto;
+    resize: none;
 }

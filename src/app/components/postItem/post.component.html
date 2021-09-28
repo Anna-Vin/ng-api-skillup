@@ -1,21 +1,66 @@
-<kendo-card class="card" width="auto" >
-  <div class="k-vbox k-column">
-    <div class="text-content">
-      <kendo-card-header class="k-hstack post-title">
-        {{ post.title }}
-      </kendo-card-header>
-      <kendo-card-body>
-        {{ post.body }}
-      </kendo-card-body>
-      <hr kendoCardSeparator />
-      <div class="comments">
-          <app-comments [comments]="comments" [areCommentsShown]="areCommentsShown" (onCommentsClick)="clickOnComment()"></app-comments>
+<kendo-card class="card" width="auto">
+  <kendo-listview class="k-vbox k-column" #listview [data]="listPostData$ | async"   (edit)="editHandler($event)"
+  (cancel)="cancelHandler($event)"
+  (save)="saveHandler($event)">
+    <!-- View Template -->
+    <ng-template
+      kendoListViewItemTemplate
+      let-dataItem="dataItem"
+      let-index="index"
+    >
+      <div class="text-content">
+        <kendo-card-header class="k-hstack post-title">
+          {{ dataItem.title }}
+        </kendo-card-header>
+        <kendo-card-body>
+          {{ dataItem.body }}
+        </kendo-card-body>
+        <hr kendoCardSeparator />
+        <div class="comments">
+          <app-comments
+            [comments]="comments"
+            [areCommentsShown]="areCommentsShown"
+            (onCommentsClick)="clickOnComment()"
+          ></app-comments>
+        </div>
+        <hr kendoCardSeparator />
       </div>
-      <hr kendoCardSeparator />
-    </div>
-    <kendo-card-actions class="actions">
-      <button kendoButton class="k-button k-bare" [primary]="true" icon="edit">Edit Post</button>
-      <button  kendoButton class="k-button k-bare" [primary]="true" icon="trash">Delete Post</button>
-    </kendo-card-actions>
-  </div>
+      <kendo-card-actions class="actions edit-buttons">
+        <button
+          kendoButton
+          kendoListViewEditCommand
+          class="k-button k-bare"
+          [primary]="true"
+        >
+        <span class="k-icon k-i-edit"></span>
+          Edit Post
+        </button>
+        <button
+          kendoButton
+          kendoListViewRemoveCommand
+          class="k-button k-bare"
+          [primary]="true"
+        >
+        <span class="k-icon k-i-trash"></span>
+          Delete Post
+        </button>
+      </kendo-card-actions>
+    </ng-template>
+
+    <!-- Edit Template -->
+    <ng-template
+      kendoListViewEditTemplate
+      let-formGroup="formGroup"
+      let-index="index"
+    >
+      <form [formGroup]="formGroup" class="k-form">
+        <kendo-label text="Title"><input type="text" formControlName="title" class="k-textbox"/></kendo-label>
+        <kendo-label text="Body"><textarea type="text" kendoTextArea formControlName="body" class="k-textbox" rows=5></textarea></kendo-label>
+        <div class="button-group">
+          <button kendoListViewSaveCommand>Update</button>
+          <button kendoListViewCancelCommand>Cancel</button>
+        </div>
+      </form>
+    </ng-template>
+  </kendo-listview>
 </kendo-card>
