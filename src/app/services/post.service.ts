@@ -33,5 +33,9 @@ export class PostService {
     return this.http.put<Post>(`${environment.BASE_URL}/api/posts/${post.id}`, post)
   }
 
+  public deletePost(post: Post): Observable<Post> {
+    return this.http.delete<Post>(`${environment.BASE_URL}/api/posts/${post.id}`)
+  }
+
 
 }

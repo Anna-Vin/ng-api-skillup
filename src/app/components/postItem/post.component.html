@@ -1,7 +1,13 @@
-<kendo-card class="card" width="auto">
-  <kendo-listview class="k-vbox k-column" #listview [data]="listPostData$ | async"   (edit)="editHandler($event)"
-  (cancel)="cancelHandler($event)"
-  (save)="saveHandler($event)">
+<kendo-card class="card" width="auto" *ngIf="listPostDataSubject.value.total">
+  <kendo-listview
+    class="k-vbox k-column"
+    #listview
+    [data]="listPostData$ | async"
+    (edit)="editHandler($event)"
+    (cancel)="cancelHandler($event)"
+    (save)="saveHandler($event)"
+    (remove)="removeHandler($event)"
+  >
     <!-- View Template -->
     <ng-template
       kendoListViewItemTemplate
@@ -32,7 +38,7 @@
           class="k-button k-bare"
           [primary]="true"
         >
-        <span class="k-icon k-i-edit"></span>
+          <span class="k-icon k-i-edit"></span>
           Edit Post
         </button>
         <button
@@ -41,7 +47,7 @@
           class="k-button k-bare"
           [primary]="true"
         >
-        <span class="k-icon k-i-trash"></span>
+          <span class="k-icon k-i-trash"></span>
           Delete Post
         </button>
       </kendo-card-actions>
@@ -54,8 +60,18 @@
       let-index="index"
     >
       <form [formGroup]="formGroup" class="k-form">
-        <kendo-label text="Title"><input type="text" formControlName="title" class="k-textbox"/></kendo-label>
-        <kendo-label text="Body"><textarea type="text" kendoTextArea formControlName="body" class="k-textbox" rows=5></textarea></kendo-label>
+        <kendo-label text="Title"
+          ><input type="text" formControlName="title" class="k-textbox"
+        /></kendo-label>
+        <kendo-label text="Body">
+          <textarea
+            type="text"
+            kendoTextArea
+            formControlName="body"
+            class="k-textbox"
+            rows="5"
+          ></textarea>
+        </kendo-label>
         <div class="button-group">
           <button kendoListViewSaveCommand>Update</button>
           <button kendoListViewCancelCommand>Cancel</button>

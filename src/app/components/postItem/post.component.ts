@@ -7,6 +7,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   CancelEvent,
   EditEvent,
+  RemoveEvent,
   ListViewDataResult,
   SaveEvent,
 } from '@progress/kendo-angular-listview';
@@ -78,5 +79,11 @@ export class PostComponent implements OnInit, OnDestroy {
       this.listPostDataSubject.next({ data: [post], total: 1 });
       sender.closeItem(itemIndex);
     });
+  }
+
+  removeHandler({dataItem} : RemoveEvent): void {
+    this.postService.deletePost(dataItem).subscribe(() => {
+      this.listPostDataSubject.next({ data: [], total: 0 });
+    })
   }
 }
