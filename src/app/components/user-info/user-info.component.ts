@@ -92,7 +92,7 @@ export class UserInfoComponent implements OnInit {
 
   saveHandler({ sender, itemIndex, formGroup }: SaveEvent): void {
     const user: User = formGroup.value;
-    this.userService.updateUser(user).subscribe(() => {
+    this.updateSub = this.userService.updateUser(user).subscribe(() => {
       this.getUserInfo(user.id);
       sender.closeItem(itemIndex);
     });

@@ -1,10 +1,30 @@
 .posts {
-    margin: 50px 0;
+  margin: 50px 0;
+  padding: 40px 0;
 
-    .header {
-        font-size: 22px;
-        margin: 10px 0;
-        text-align: center;
-        font-weight: bold;
-    }
+  .header {
+    font-size: 22px;
+    margin: 10px 0;
+    text-align: center;
+    font-weight: bold;
+  }
+}
+
+form {
+  padding: 20px;
+}
+
+kendo-label {
+  margin: 20px;
+}
+
+textarea.k-textbox {
+  height: auto;
+  resize: none;
+}
+
+.add,
+.button-group {
+  text-align: center;
+  margin: 15px;
 }

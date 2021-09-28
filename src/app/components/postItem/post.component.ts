@@ -27,6 +27,8 @@ export class PostComponent implements OnInit, OnDestroy {
       total: 0,
     });
   private commSub!: Subscription;
+  private updSub!: Subscription;
+  private delSub!: Subscription;
   @Input() post: Post;
 
   constructor(private postService: PostService) {}
@@ -41,6 +43,8 @@ export class PostComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.commSub.unsubscribe();
+    this.updSub.unsubscribe();
+    this.delSub.unsubscribe();
   }
 
   public clickOnComment(): void {
@@ -48,7 +52,7 @@ export class PostComponent implements OnInit, OnDestroy {
       return;
     } else {
       this.areCommentsShown = true;
-      this.postService.getComments().subscribe((commResp) => {
+      this.commSub = this.postService.getComments().subscribe((commResp) => {
         this.comments = this.postService.filterCommentsByPost(
           commResp,
           this.post.id
@@ -74,7 +78,7 @@ export class PostComponent implements OnInit, OnDestroy {
 
   saveHandler({ sender, itemIndex, formGroup }: SaveEvent): void {
     const post: Post = formGroup.value;
-    this.postService.updatePost(post).subscribe(() => {
+    this.updSub = this.postService.updatePost(post).subscribe(() => {
       this.postService.getPostInfo(post.id);
       this.listPostDataSubject.next({ data: [post], total: 1 });
       sender.closeItem(itemIndex);
@@ -82,7 +86,7 @@ export class PostComponent implements OnInit, OnDestroy {
   }
 
   removeHandler({dataItem} : RemoveEvent): void {
-    this.postService.deletePost(dataItem).subscribe(() => {
+   this.delSub = this.postService.deletePost(dataItem).subscribe(() => {
       this.listPostDataSubject.next({ data: [], total: 0 });
     })
   }

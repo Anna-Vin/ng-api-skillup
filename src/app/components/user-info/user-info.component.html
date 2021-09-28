@@ -117,7 +117,14 @@
       </div>
     </div>
     <div class="edit-buttons">
-      <button kendoListViewEditCommand>Edit</button>
+      <button
+        kendoListViewEditCommand
+        kendoButton
+        look="default"
+        [primary]="true"
+      >
+        <span class="k-icon k-i-edit"></span> Edit
+      </button>
     </div>
   </ng-template>
 </kendo-listview>
