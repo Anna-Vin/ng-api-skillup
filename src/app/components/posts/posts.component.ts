@@ -74,8 +74,8 @@ export class PostsComponent implements OnInit, OnDestroy {
 
   addHandler({ sender }: AddEvent) {
     this.formGroup = new FormGroup({
+      userId: new FormControl(+this.userId),
       id: new FormControl(this.newPostId),
-      userId: new FormControl(this.userId),
       title: new FormControl('', Validators.required),
       body: new FormControl('', Validators.required),
     });

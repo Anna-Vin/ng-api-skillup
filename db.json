@@ -32,6 +32,12 @@
     },
     {
       "id": 101
+    },
+    {
+      "userId": 1,
+      "id": 96658,
+      "title": "Test",
+      "body": "Test"
     }
   ],
   "comments": [

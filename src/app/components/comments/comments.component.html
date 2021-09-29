@@ -6,13 +6,16 @@
           <p class="comment-user">{{comment.name}} | {{comment.email}} :</p>
           <p class="comment-body">{{comment.body}}</p>
         </div>
-        <kendo-loader *ngIf="!comments.length"
+        <kendo-loader *ngIf="!comments.length && areCommentsExist"
         class="loader"
         type="infinite-spinner"
         themeColor="primary"
         size="large"
       >
       </kendo-loader>
+      <div *ngIf="!areCommentsExist" class="message">
+        <h3>Comments are not found</h3>
+      </div>
       </div>
     </ng-template>
   </kendo-panelbar-item>

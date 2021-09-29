@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnInit, EventEmitter  } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { Comment } from '../../models/Comment';
 
 
@@ -11,6 +11,7 @@ export class CommentsComponent implements OnInit {
 
   @Input() comments: Comment[];
   @Input() areCommentsShown: boolean;
+  @Input() areCommentsExist: boolean;
   @Output() onCommentsClick: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() {}
@@ -19,6 +20,6 @@ export class CommentsComponent implements OnInit {
     this.onCommentsClick.emit(true)
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }
+ 

@@ -47,7 +47,6 @@ export class UserInfoComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.routeSub.unsubscribe();
     this.userSub.unsubscribe();
     this.updateSub.unsubscribe();
   }

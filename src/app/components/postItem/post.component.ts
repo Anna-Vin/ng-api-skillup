@@ -20,6 +20,7 @@ import {
 export class PostComponent implements OnInit, OnDestroy {
   public comments: Comment[] = [];
   public areCommentsShown: boolean = false;
+  public areCommentsExist: boolean = true;
   public formGroup!: FormGroup;
   public listPostDataSubject: BehaviorSubject<ListViewDataResult> =
     new BehaviorSubject({
@@ -57,6 +58,9 @@ export class PostComponent implements OnInit, OnDestroy {
           commResp,
           this.post.id
         );
+        if(!this.comments.length) {
+          this.areCommentsExist = false;
+        }
       });
     }
   }
