@@ -58,14 +58,14 @@ export class PostComponent implements OnInit, OnDestroy {
           commResp,
           this.post.id
         );
-        if(!this.comments.length) {
+        if (!this.comments.length) {
           this.areCommentsExist = false;
         }
       });
     }
   }
 
-  editHandler({ sender, dataItem, itemIndex }: EditEvent): void {
+  public editHandler({ sender, dataItem, itemIndex }: EditEvent): void {
     this.formGroup = new FormGroup({
       id: new FormControl(dataItem.id),
       userId: new FormControl(dataItem.userId),
@@ -76,11 +76,11 @@ export class PostComponent implements OnInit, OnDestroy {
     sender.editItem(itemIndex, this.formGroup);
   }
 
-  cancelHandler({ sender, itemIndex }: CancelEvent): void {
+  public cancelHandler({ sender, itemIndex }: CancelEvent): void {
     sender.closeItem(itemIndex);
   }
 
-  saveHandler({ sender, itemIndex, formGroup }: SaveEvent): void {
+  public saveHandler({ sender, itemIndex, formGroup }: SaveEvent): void {
     const post: Post = formGroup.value;
     this.updSub = this.postService.updatePost(post).subscribe(() => {
       this.postService.getPostInfo(post.id);
@@ -89,9 +89,9 @@ export class PostComponent implements OnInit, OnDestroy {
     });
   }
 
-  removeHandler({dataItem} : RemoveEvent): void {
-   this.delSub = this.postService.deletePost(dataItem).subscribe(() => {
+  public removeHandler({ dataItem }: RemoveEvent): void {
+    this.delSub = this.postService.deletePost(dataItem).subscribe(() => {
       this.listPostDataSubject.next({ data: [], total: 0 });
-    })
+    });
   }
 }

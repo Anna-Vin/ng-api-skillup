@@ -22,7 +22,6 @@ export class UserInfoComponent implements OnInit {
   public listDataSubject!: BehaviorSubject<ListViewDataResult>;
   public isLoaded: boolean = false;
   public isUserExists: boolean = true;
-  private routeSub!: Subscription;
   private userSub!: Subscription;
   private updateSub!: Subscription;
 
@@ -40,7 +39,7 @@ export class UserInfoComponent implements OnInit {
       data: [] as User[],
       total: 0,
     });
-    this.routeSub = this.activatedRoute.params.subscribe((params: Params) => {
+    this.activatedRoute.params.subscribe((params: Params) => {
       this.userId = params['id'];
       this.userService.userIdSubject.next(this.userId);
       this.getUserInfo(this.userId);
@@ -53,17 +52,19 @@ export class UserInfoComponent implements OnInit {
   }
 
   public getUserInfo(id: number): void {
-    this.userSub = this.userService
-      .getSingleUserInfo(id)
-      .subscribe((userResp: User) => {
+    this.userSub = this.userService.getSingleUserInfo(id).subscribe(
+      (userResp: User) => {
         this.listDataSubject.next({ data: [userResp], total: 1 });
         this.isLoaded = true;
-      }, () => {
+      },
+      () => {
         this.isUserExists = false;
-      });
+        this.userService.isUserExistSubject.next(false);
+      }
+    );
   }
 
-  editHandler({ sender, dataItem, itemIndex }: EditEvent): void {
+  public editHandler({ sender, dataItem, itemIndex }: EditEvent): void {
     this.formGroup = new FormGroup({
       id: new FormControl(dataItem.id),
       firstName: new FormControl(dataItem.firstName, Validators.required),
@@ -90,11 +91,11 @@ export class UserInfoComponent implements OnInit {
     sender.editItem(itemIndex, this.formGroup);
   }
 
-  cancelHandler({ sender, itemIndex }: CancelEvent): void {
+  public cancelHandler({ sender, itemIndex }: CancelEvent): void {
     sender.closeItem(itemIndex);
   }
 
-  saveHandler({ sender, itemIndex, formGroup }: SaveEvent): void {
+  public saveHandler({ sender, itemIndex, formGroup }: SaveEvent): void {
     const user: User = formGroup.value;
     this.updateSub = this.userService.updateUser(user).subscribe(() => {
       this.getUserInfo(user.id);

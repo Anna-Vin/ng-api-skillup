@@ -11,6 +11,7 @@ import { HomePageUser } from '../models/homepageUser';
 export class UserService {
 
   public userIdSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  public isUserExistSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
   constructor(private http: HttpClient) {}
 
@@ -20,6 +21,10 @@ export class UserService {
 
   userId$(): Observable<number> {
     return this.userIdSubject.asObservable();
+  }
+
+  isUserExist$(): Observable<boolean> {
+    return this.isUserExistSubject.asObservable()
   }
 
   
