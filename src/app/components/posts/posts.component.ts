@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/Post';
 import { PostService } from '../../services/post.service';
 import { UserService } from 'src/app/services/user.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { map } from 'rxjs/operators';
 import {
   CancelEvent,
   AddEvent,
@@ -17,7 +18,6 @@ import {
 })
 export class PostsComponent implements OnInit, OnDestroy {
   public posts!: Post[];
-  public postsSubject: BehaviorSubject<Post[]> = new BehaviorSubject([]);
   public userId!: number;
   public isUserExist!: boolean;
   public newPostId!: number;
@@ -27,9 +27,6 @@ export class PostsComponent implements OnInit, OnDestroy {
   private idSub!: Subscription;
   private createSub!: Subscription;
 
-  get posts$(): Observable<Post[]> {
-    return this.postsSubject.asObservable();
-  }
 
   constructor(
     private postService: PostService,
@@ -54,14 +51,15 @@ export class PostsComponent implements OnInit, OnDestroy {
   }
 
   public loadPosts(): void {
-    this.postsSub = this.postService
-    .getPosts()
-    .subscribe((postsResp: Post[]) => {
-      this.newPostId = this.postService.generateIdForNewPost(postsResp);
-      this.postsSubject.next(postsResp.filter(
-        (post: Post) => post.userId == this.userId
-      ));
-    });
+    this.postService
+      .getPosts()
+      .pipe(map(posts => {
+        return posts.filter(p => p.userId === Number(this.userId));
+      }))
+      .subscribe((postsResp: Post[]) => {
+        this.newPostId = this.postService.generateIdForNewPost(postsResp);
+        this.posts = postsResp;
+      });
   }
 
   public cancelHandler({ sender, itemIndex }: CancelEvent): void {
@@ -72,7 +70,6 @@ export class PostsComponent implements OnInit, OnDestroy {
     const post: Post = formGroup.value;
     this.createSub = this.postService.createNewPost(post).subscribe(() => {
       this.loadPosts();
-      // this.posts.push(post);
       sender.closeItem(itemIndex);
     });
   }
