@@ -1,4 +1,4 @@
-<div class="loader-wrapper" *ngIf="!isLoaded">
+<div class="loader-wrapper" *ngIf="!isLoaded && isUserExists">
   <kendo-loader
     class="loader"
     type="infinite-spinner"
@@ -6,6 +6,10 @@
     size="large"
   >
   </kendo-loader>
+</div>
+
+<div class="message" *ngIf="!isUserExists">
+ <h1>USER WAS NOT FOUND</h1> 
 </div>
 
 <kendo-listview
