@@ -1,0 +1,62 @@
+<kendo-listview
+  class="posts"
+  [height]="1000"
+  [data]="posts"
+  containerClass="k-d-flex k-flex-col k-flex-nowrap"
+  (add)="addHandler($event)"
+  (save)="saveHandler($event)"
+  (cancel)="cancelHandler($event)"
+>
+  <ng-template kendoListViewHeaderTemplate>
+    <div class="header">POSTS BY THIS USER</div>
+    <div class="add">
+      <button
+        class="k-add-button"
+        kendoButton
+        kendoListViewAddCommand
+        look="default"
+        [primary]="true"
+        [disabled]="!isUserExist"
+      >
+        <span class="k-icon k-i-plus"></span> Create new Post
+      </button>
+    </div>    
+  </ng-template>
+  <!-- Add new Post Form Template -->
+
+  <ng-template
+    kendoListViewEditTemplate
+    let-formGroup="formGroup"
+    let-index="index"
+  >
+    <form [formGroup]="formGroup" class="k-form">
+      <kendo-label text="Title"
+        ><input type="text" formControlName="title" class="k-textbox"
+      /></kendo-label>
+      <kendo-label text="Body">
+        <textarea
+          type="text"
+          kendoTextArea
+          formControlName="body"
+          class="k-textbox"
+          rows="5"
+        ></textarea>
+      </kendo-label>
+      <div class="button-group">
+        <button kendoListViewSaveCommand [disabled]="formGroup.invalid">
+          Save
+        </button>
+        <button kendoListViewCancelCommand>Cancel</button>
+      </div>
+    </form>
+  </ng-template>
+
+  <!-- View Posts Template -->
+  <ng-template
+    kendoListViewItemTemplate
+    let-dataItem="dataItem"
+    let-isLast="isLast"
+  >
+    <app-post class="article" [post]="dataItem"> </app-post>
+  </ng-template>
+</kendo-listview>
