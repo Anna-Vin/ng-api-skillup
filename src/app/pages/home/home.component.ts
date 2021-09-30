@@ -5,9 +5,6 @@ import { UserService } from '../../services/user.service';
 import { User } from 'src/app/models/User';
 import { HomePageUser } from '../../models/homepageUser';
 
-
-
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,7 +16,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   public isModalOpen: boolean = false;
   private usersSub!: Subscription;
   private userToShow!: HomePageUser;
-
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -67,6 +63,4 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.getUsersforTable();
     console.log('Home components Submit');
   }
-
-
 }

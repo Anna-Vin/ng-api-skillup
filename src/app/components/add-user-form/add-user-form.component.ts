@@ -20,7 +20,7 @@ import { HomePageUser } from './../../models/homepageUser';
 export class AddUserFormComponent implements OnInit, OnDestroy {
   public addUserForm!: FormGroup;
   public newUserId!: number;
-  private getSub!: Subscription;
+  private createSub!: Subscription;
 
   @Input() users!: HomePageUser[];
   @Input() isModalOpen!: boolean;
@@ -62,14 +62,14 @@ export class AddUserFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.getSub?.unsubscribe();
+    this.createSub?.unsubscribe();
   }
 
   public createUserHandler(): void {
     const userData: User = this.addUserForm.value;
-    this.userService.createUser(userData).subscribe();
-    this.getSub = this.userService.getUsers().subscribe();
-    this.onFormSubmit.emit();
-    this.onModalClose.emit(false);
+    this.createSub = this.userService.createUser(userData).subscribe(() => {
+      this.onFormSubmit.emit();
+      this.onModalClose.emit(false);
+    });
   }
 }
