@@ -1,6 +1,6 @@
 <kendo-listview
   class="posts"
-  [height]="1000"
+  [height]="isUserExist ? 1000 : 143"
   [data]="posts"
   containerClass="k-d-flex k-flex-col k-flex-nowrap"
   (add)="addHandler($event)"
