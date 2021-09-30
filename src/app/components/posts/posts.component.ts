@@ -44,10 +44,10 @@ export class PostsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.postsSub.unsubscribe();
-    this.idSub.unsubscribe();
-    this.createSub.unsubscribe();
-    this.userSub.unsubscribe();
+    this.postsSub?.unsubscribe();
+    this.idSub?.unsubscribe();
+    this.createSub?.unsubscribe();
+    this.userSub?.unsubscribe();
   }
 
   public loadPosts(): void {

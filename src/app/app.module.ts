@@ -20,6 +20,7 @@ import { PostsComponent } from './components/posts/posts.component';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { CommentsComponent } from './components/comments/comments.component';
 import { IndicatorsModule } from '@progress/kendo-angular-indicators';
+import { InputsModule } from '@progress/kendo-angular-inputs';
 
 
 
@@ -40,7 +41,8 @@ import { IndicatorsModule } from '@progress/kendo-angular-indicators';
     ReactiveFormsModule,
     LabelModule,
     LayoutModule,
-    IndicatorsModule
+    IndicatorsModule,
+    InputsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

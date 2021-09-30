@@ -5,6 +5,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/User';
 import { HomePageUser } from '../models/homepageUser';
 
+
+
 @Injectable({
   providedIn: 'root',
 })
@@ -44,6 +46,18 @@ export class UserService {
   
   public updateUser(user: User): Observable<User> {
     return this.http.put<User>(`${environment.BASE_URL}/users/${user.id}`, user)
+  }
+
+  public createUser(user: User): Observable<User> {
+    return this.http.post<User>(`${environment.BASE_URL}/users`, user)
+  }
+
+  public generateNewUserId(users: HomePageUser[]):number {
+    let newId:number = users.length + 1;
+    if (users.find((user) => user.id == newId)) {
+      newId++;
+    }
+    return newId;
   }
 
 }
