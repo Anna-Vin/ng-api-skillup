@@ -9,9 +9,11 @@ import { HomePageUser } from '../models/homepageUser';
   providedIn: 'root',
 })
 export class UserService {
-
-  public userIdSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-  public isUserExistSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  public userIdSubject: BehaviorSubject<number> = new BehaviorSubject<number>(
+    0
+  );
+  public isUserExistSubject: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(true);
 
   constructor(private http: HttpClient) {}
 
@@ -24,10 +26,9 @@ export class UserService {
   }
 
   isUserExist$(): Observable<boolean> {
-    return this.isUserExistSubject.asObservable()
+    return this.isUserExistSubject.asObservable();
   }
 
-  
   public mapUserForTable(user: User): HomePageUser {
     return {
       id: user.id,
@@ -37,13 +38,27 @@ export class UserService {
       phone: user.phone,
     };
   }
-  
+
   public getSingleUserInfo(id: number): Observable<User> {
     return this.http.get<User>(`${environment.BASE_URL}/users/${id}`);
   }
-  
+
   public updateUser(user: User): Observable<User> {
-    return this.http.put<User>(`${environment.BASE_URL}/users/${user.id}`, user)
+    return this.http.put<User>(
+      `${environment.BASE_URL}/users/${user.id}`,
+      user
+    );
   }
 
+  public createUser(user: User): Observable<User> {
+    return this.http.post<User>(`${environment.BASE_URL}/users`, user);
+  }
+
+  public generateNewUserId(users: HomePageUser[]): number {
+    let newId: number = users.length + 1;
+    if (users.find((user) => user.id == newId)) {
+      newId++;
+    }
+    return newId;
+  }
 }

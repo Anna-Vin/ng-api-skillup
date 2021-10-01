@@ -2,14 +2,117 @@
   title="Please Enter User Data"
   [minWidth]="250"
   [width]="450"
+  [height]="600"
   *ngIf="isModalOpen"
-  (close)="close('cancel')"
+  (close)="close()"
 >
-  <p style="margin: 30px; text-align: center">FORM PLACEHOLDER</p>
-  <kendo-dialog-actions>
-    <button kendoButton (click)="close('no')">Cancel</button>
-    <button kendoButton (click)="close('yes')" [primary]="true">
-      Add User
-    </button>
-  </kendo-dialog-actions>
+  <form
+    class="k-form"
+    [formGroup]="addUserForm"
+    (ngSubmit)="createUserHandler()"
+  >
+    <fieldset class="k-form-fieldset">
+      <legend class="k-form-legend">User details</legend>
+
+      <kendo-formfield>
+        <kendo-label [for]="firstName" text="First Name"></kendo-label>
+        <input formControlName="firstName" kendoTextBox #firstName />
+        <kendo-formhint>Your first name</kendo-formhint>
+        <kendo-formerror>Error: First name is required</kendo-formerror>
+      </kendo-formfield>
+
+      <kendo-formfield>
+        <kendo-label [for]="lastName" text="Last Name"></kendo-label>
+        <input formControlName="lastName" kendoTextBox #lastName />
+        <kendo-formhint>Your last name</kendo-formhint>
+        <kendo-formerror>Error: Last name is required</kendo-formerror>
+      </kendo-formfield>
+
+      <kendo-formfield>
+        <kendo-label [for]="username" text="Username"></kendo-label>
+        <input formControlName="username" kendoTextBox #username />
+        <kendo-formhint>Your username</kendo-formhint>
+        <kendo-formerror>Error: Username is required</kendo-formerror>
+      </kendo-formfield>
+
+      <kendo-formfield>
+        <kendo-label [for]="email" text="Email"></kendo-label>
+        <input formControlName="email" kendoTextBox #email />
+        <kendo-formhint>Your active email</kendo-formhint>
+        <kendo-formerror>Error: Not valid email format</kendo-formerror>
+      </kendo-formfield>
+
+      <kendo-formfield>
+        <kendo-label [for]="phone" text="Phone"></kendo-label>
+        <input formControlName="phone" kendoTextBox #phone />
+        <kendo-formhint>Your phone number</kendo-formhint>
+        <kendo-formerror>Error: Phone is required</kendo-formerror>
+      </kendo-formfield>
+
+      <kendo-formfield>
+        <kendo-label [for]="website" text="Website"></kendo-label>
+        <input formControlName="website" kendoTextBox #website />
+        <kendo-formhint>Your website</kendo-formhint>
+        <kendo-formerror>Error: Website is required</kendo-formerror>
+      </kendo-formfield>
+
+      <br />
+      <legend class="k-form-legend">Address</legend>
+      <div formGroupName="address">
+        <kendo-formfield>
+          <kendo-label [for]="street" text="Street"></kendo-label>
+          <input formControlName="street" kendoTextBox #street />
+          <kendo-formhint>Street</kendo-formhint>
+          <kendo-formerror>Error: Street is required</kendo-formerror>
+        </kendo-formfield>
+        <kendo-formfield>
+          <kendo-label [for]="building" text="Building"></kendo-label>
+          <input formControlName="building" kendoTextBox #building />
+          <kendo-formhint>Building</kendo-formhint>
+          <kendo-formerror>Error: Buildingis required</kendo-formerror>
+        </kendo-formfield>
+        <kendo-formfield>
+          <kendo-label [for]="city" text="City"></kendo-label>
+          <input formControlName="city" kendoTextBox #city />
+          <kendo-formhint>City</kendo-formhint>
+          <kendo-formerror>Error: City is required</kendo-formerror>
+        </kendo-formfield>
+        <kendo-formfield>
+          <kendo-label [for]="zipcode" text="Zipcode"></kendo-label>
+          <input formControlName="zipcode" kendoTextBox #zipcode />
+          <kendo-formhint>Zipcode</kendo-formhint>
+          <kendo-formerror>Error: Zipcode is required</kendo-formerror>
+        </kendo-formfield>
+      </div>
+
+      <br />
+      <legend class="k-form-legend">Company</legend>
+      <div formGroupName="company">
+        <kendo-formfield>
+          <kendo-label [for]="name" text="Company Name"></kendo-label>
+          <input formControlName="name" kendoTextBox #name />
+          <kendo-formhint>Company Name</kendo-formhint>
+          <kendo-formerror>Error: Company Name is required</kendo-formerror>
+        </kendo-formfield>
+        <kendo-formfield>
+          <kendo-label [for]="scope" text="Company Scope"></kendo-label>
+          <input formControlName="scope" kendoTextBox #scope />
+          <kendo-formhint>Your company's scope</kendo-formhint>
+          <kendo-formerror>Error: Scope is required</kendo-formerror>
+        </kendo-formfield>
+      </div>
+    </fieldset>
+
+    <kendo-dialog-actions class="buttons-wrapper">
+      <button kendoButton (click)="close()">Cancel</button>
+      <button
+        kendoButton
+        type="submit"
+        [primary]="true"
+        [disabled]="addUserForm.invalid"
+      >
+        Add User
+      </button>
+    </kendo-dialog-actions>
+  </form>
 </kendo-dialog>

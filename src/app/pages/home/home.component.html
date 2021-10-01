@@ -1,7 +1,15 @@
 <div class="container home">
-  <button kendoButton (click)="openModal()" class="addButton">ADD USER</button>
+  <button
+    kendoButton
+    (click)="openModal()"
+    class="addButton"
+    [primary]="true"
+    look="default"
+  >
+    ADD USER
+  </button>
   <kendo-grid
-    [data]="users"
+    [data]="gridData$ | async"
     (cellClick)="getRowUserInfo($event)"
     (dblclick)="rowClickHandler()"
     scrollable="none"
@@ -12,7 +20,6 @@
       [headerStyle]="{
         'background-color': '#d6534a',
         color: '#fff'
-
       }"
     ></kendo-grid-column>
     <kendo-grid-column
@@ -42,6 +49,9 @@
   </kendo-grid>
 </div>
 <app-add-user-form
+  *ngIf="isModalOpen"
+  [users]="users"
   [isModalOpen]="isModalOpen"
+  (onFormSubmit)="submitAddForm()"
   (onModalClose)="closeModal()"
 ></app-add-user-form>
